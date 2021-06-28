@@ -1,8 +1,17 @@
 
 {% extends 'core/base.html' %}
+
+
+
+
 {% block contenido %}
 {% load static %}
+{% block js %}
 
+<script src="{% static 'core/js/formulario-contacto.js' %}"></script>
+
+
+{% endblock %}
 <main class="flex-fill">
     <section>
         <h2>Contacto</h2>

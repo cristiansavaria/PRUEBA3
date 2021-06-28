@@ -2,12 +2,12 @@
 
 $(document).ready(function() {
 
-    var nroTotalImagenes = 10;
-    var nroColumnasPorFila = 5;
+    var nroTotalImagenes = 6;
+    var nroColumnasPorFila = 3;
     var selectorTablaHTML = "#lista-perros"
     var url = "https://api.thedogapi.com/v1/images/search?limit="+nroTotalImagenes
 
-    generar_galeria_imagenes(selectorTablaHTML, nroTotalImagenes, nroColumnasPorFila, url,"Cambiar Imagen");
+    generar_galeria_imagenes(selectorTablaHTML, nroTotalImagenes, nroColumnasPorFila, url,"Ver Detalle");
 });
 
 function getBtnActionURL() {
