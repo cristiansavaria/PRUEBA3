@@ -48,6 +48,8 @@ def listar_proveedor(request):
 
 
 
+
+
 def modificar_proveedor(request, rut):
 
     proveedor = get_object_or_404(Proveedor, rut=rut)
@@ -65,6 +67,10 @@ def modificar_proveedor(request, rut):
         data["form"] = formulario    
 
     return render(request, 'core/proveedor/modificar.html', data)
+
+
+
+
 
 
 def eliminar_proveedor(request, rut):
