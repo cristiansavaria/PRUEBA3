@@ -24,6 +24,25 @@
                 <p class="text-justify">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam repellat earum fuga? Nihil adipisci in ut labore nobis, earum eos possimus ex eum eveniet delectus suscipit mollitia perspiciatis, repellat vitae!
                 </p>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout' %}" class="btn btn-info float-right">cerrar sesión</a>
+                    </li>
+                    <li>
+                        <a href="#">{{ user.username }}</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}" class="btn btn-success float-right ">iniciar sesión</a><hr>
+                    </li>
+                    
+                    <li>
+                        <a href="{% url 'registro' %}" class="btn btn-info float-right ">Registrarse</a>
+                    </li>
+                    
+                    
+                    {% endif %}
+
             </header>
             <nav class="navbar navbar-expand-md bg-light">
                 
@@ -56,6 +75,9 @@
                         
                         <a class="nav-link" href="{% url 'listar-proveedor' %}">Proveedores</a>
                     </li>
+
+                    
+
                 </ul>
             </nav>
  

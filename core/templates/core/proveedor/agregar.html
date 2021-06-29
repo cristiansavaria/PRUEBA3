@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 {% block contenido %}
-
+{% load static %}
 <div class="row">
     <div class=" col-12 col-md-6 offset-md-3">
         <div class="jumbotron">
@@ -16,6 +16,7 @@
                     <div class="d-flex justify-content-center">
 
                         <input type="submit" value="Guardar" class="btn btn-primary">
+                        
                         
                         <a href="{% url 'listar-proveedor' %}" class="btn btn-secondary">Cancelar</a>
                         

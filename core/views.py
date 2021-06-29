@@ -1,7 +1,9 @@
 from django.shortcuts import render , redirect, get_object_or_404
 from .models import Proveedor
-from.forms import ProveedorForm
+from.forms import ProveedorForm, CustomUserCreationForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 def index(request):
@@ -17,8 +19,8 @@ def formulario_enviado(request):
 
 def agregar_proveedor(request):
     return render(request, 'core/proveedor/agregar.html')
-
-
+@login_required
+@permission_required('app.add_proveedor')
 def agregar_proveedor(request):
 
     data = {
@@ -36,7 +38,8 @@ def agregar_proveedor(request):
 
 
     return render(request, 'core/proveedor/agregar.html', data)
-
+@login_required
+@permission_required('app.view_proveedor')
 def listar_proveedor(request):
     proveedor = Proveedor.objects.all()
 
@@ -48,8 +51,8 @@ def listar_proveedor(request):
 
 
 
-
-
+@login_required
+@permission_required('app.change_proveedor')
 def modificar_proveedor(request, rut):
 
     proveedor = get_object_or_404(Proveedor, rut=rut)
@@ -71,10 +74,34 @@ def modificar_proveedor(request, rut):
 
 
 
-
-
+@login_required
+@permission_required('app.delete_proveedor')
 def eliminar_proveedor(request, rut):
     proveedor = get_object_or_404(Proveedor, rut=rut)
     proveedor.delete()
     messages.success(request, "Proveedor eliminado exitosamente")
     return redirect(to="listar-proveedor")
+
+
+
+
+
+
+def registro(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, user)
+            messages.success(request, "Registro Correcto")
+            return redirect(to="index")
+
+        data["form"] = formulario    
+
+    return render(request, 'registration/registro.html', data)
+
+

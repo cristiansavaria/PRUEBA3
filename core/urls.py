@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, contacto, seccion_gatos, seccion_perros, formulario_enviado, agregar_proveedor, listar_proveedor, modificar_proveedor, eliminar_proveedor
+from .views import index, contacto, seccion_gatos, seccion_perros, formulario_enviado, agregar_proveedor, listar_proveedor, modificar_proveedor, eliminar_proveedor, registro
 from .views import contacto
 
 urlpatterns = [
@@ -13,5 +13,6 @@ urlpatterns = [
     path('listar-proveedor/', listar_proveedor, name="listar-proveedor"),
     path('modificar-proveedor/<rut>/', modificar_proveedor, name="modificar-proveedor"),
     path('eliminar-proveedor/<rut>/', eliminar_proveedor, name="eliminar-proveedor"),
+    path('registro/', registro, name="registro"),
 
 ]
